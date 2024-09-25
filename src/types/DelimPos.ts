@@ -1,0 +1,1 @@
+export type DelimPos = [number, number, number, number];

@@ -1,0 +1,1 @@
+export type ExtendedElement = Element & HTMLElement;
