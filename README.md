@@ -147,3 +147,11 @@ Inspired by discord, you can create **spoilers** by wrapping text with `||`.  In
 - Syntax is not properly parsed in post-processed codeblocks such as Admonition
 
 Feel free to let me know if you find any bugs...
+
+## Credit
+
+Thanks to:
+- [Superschnizel](https://github.com/Superschnizel/obisdian-fast-text-color) for interactive menu idea,
+- [Mara-Li](https://github.com/Mara-Li/obsidian-regex-mark) for some code snippets,
+- [marcel-goldammer](https://github.com/marcel-goldammer/obsidian-keyword-highlighter),
+- [attcoleanderson](https://github.com/mattcoleanderson/obsidian-dynamic-text-concealer)
