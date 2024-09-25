@@ -1,10 +1,10 @@
-# Extended Markdown Syntax
+# Extended Markdown Syntax - Obsidian Plugin
 
 This plugin provides some alternatives for inline formatting using non-standard syntaxes instead of using html tags, such as underline, superscript, and much more.
 
 You can easily create text that is <u>underlined</u>, <sup>superscripted</sup>, or <sub>subscripted</sub> without any pain of writing html tags. And don't forget, this plugin supports both modes: editor mode and preview mode.
 
-![[ems1.webm]]
+![ems0.webm](readme/ems0.webm)
 
 ## Features
 
@@ -33,7 +33,7 @@ You can format text by wrapping it with delimiters.
 ```
 
 This will result:
-![[Screenshot from 2024-09-24 12-13-28.png]]
+![ems1.png](readme/ems1.png)
 
 You can also combine various formatting without any rendering issues in live-preview mode.:
 
@@ -41,7 +41,7 @@ You can also combine various formatting without any rendering issues in live-pre
 Lorem ++ip*s*um++ dolor sit amet, consectetur adipiscing elit. Aenean sed enim ut dui vehicula **eleifend ++at ~non~++ magna**. Vestibulum viverra imperdiet magna ut pharetra. Proin eleifend orci felis, eget ultricies velit varius quis. Aliquam quis auctor lectus. Donec ~~cong^ue^~~ sed nibh sollicitudin dignissim.
 ```
 
-![[ems2.webm]]
+![ems2.webm](readme/ems2.webm)
 
 Backslash can also be used to escape delimiters, so the text will not be formatted.
 
@@ -49,7 +49,7 @@ Backslash can also be used to escape delimiters, so the text will not be formatt
 ++will be formatted++ \++will be escaped++ +\+also will be escaped+\+.
 ```
 
-![[ems3.png]]
+![ems3.png](readme/ems3.png)
 
 ### Paragraph Aligning
 
@@ -73,7 +73,7 @@ You can easily set the alignment of a paragraph by writing the aligning-marker a
 ```
 
 This will shown as:
-![[ems4.png]]
+![ems4.png](readme/ems4.png)
 
 Marker can also be applied to headings by placing it after hash marks and space:
 
@@ -81,7 +81,7 @@ Marker can also be applied to headings by placing it after hash marks and space:
 # !{alignment}!your heading
 ```
 
-![[ems5.webm]]
+![ems5.webm](readme/ems5.webm)
 
 Moreover, markers can also be applied to callouts, both titles and content, and table cells.
 
@@ -92,7 +92,7 @@ Moreover, markers can also be applied to callouts, both titles and content, and 
 To adjust the alignment of callout title, place alignment marker after callout type identifier (e.g. "[!note]") and space.
 ```
 
-![[ems10.webm]]
+![ems6.webm](readme/ems6.webm)
 
 > [!note]
 > For now, I don't include the alignment feature in blockquotes for several reasons.
@@ -105,7 +105,7 @@ You can customize your highlight color simply by adding color tag after opening 
 =={color tag}highlighted text==
 ```
 
-![[ems6.webm]]
+![ems7.webm](readme/ems7.webm)
 
 For the moment, the supported colors are red, orange, yellow, green, cyan, blue, purple, pink (there is also your accent color). If you don't want to use custom colors you can let the highlighted text without color tag (like this: `==default highlighting==`).
 
@@ -114,11 +114,11 @@ For the moment, the supported colors are red, orange, yellow, green, cyan, blue,
 ```
 
 This will be shown:
-![[ems7.png]]
+![ems8.png](readme/ems8.png)
 
 Tired of retyping the color tag, you can change the highlight color by hovering over the color button and selecting any color you want (you can also remove the highlight).
 
-![[ems8.webm]]
+![ems9.webm](readme/ems9.webm)
 
 ### Discord-Flavoured Spoiler
 
@@ -128,13 +128,13 @@ Inspired by discord, you can create **spoilers** by wrapping text with `||`.  In
 ||your spoiler||
 ```
 
-![[ems9.webm]]
+![ems10.webm](readme/ems10.webm)
 
 ## Features to be Implemented in The Future
 
 - [ ] Enable/disable formatting in settings
 - [ ] Customize formatting styles and highlighting colors
-- [ ] Applying syntax quickly using shortcuts
+- [ ] Applying syntax quickly using shortcuts and context menu
 - [ ] More syntaxes, if necessary
 
 ## Known Issues
