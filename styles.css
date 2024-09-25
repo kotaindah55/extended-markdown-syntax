@@ -1,7 +1,3 @@
-:root {
-    --color-accent-rgb: 51, 139, 255;
-}
-
 .cm-line {
     &.cmx-align-left {
         text-align: left;
@@ -92,7 +88,7 @@ mark.cmx-highlight-pink, .cmx-highlight-pink, .cmx-highlight-pink .cmx-color-btn
     background-color: rgba(var(--color-pink-rgb), 0.5);
 }
 mark.cmx-highlight-accent, .cmx-highlight-accent, .cmx-highlight-accent .cmx-color-btn, .es-item-accent .menu-item-title {
-    background-color: rgba(var(--color-accent-rgb), 0.5);
+    background-color: hsla(var(--color-accent-hsl), 0.5)
 }
 mark.cmx-highlight-default, .cmx-highlight-default, .cmx-highlight-default .cmx-color-btn, .es-item-default .menu-item-title {
     background-color: var(--text-highlight-bg);
