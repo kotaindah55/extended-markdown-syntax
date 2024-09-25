@@ -25,14 +25,14 @@
     font-size: var(--font-smallest);
 }
 
-.cm-selectionBackground {
+/* .cm-selectionBackground {
     transition-duration: 0.1s;
     transition-property: left, width;
 }
 .cm-s-obsidian .cm-cursor {
     transition-property: left, top;
     transition-duration: 0.1s;
-}
+} */
 
 .cm-s-obsidian span.cm-highlight:has(.cmx-highlight) {
     background-color: transparent;

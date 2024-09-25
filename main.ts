@@ -1,5 +1,5 @@
 import { Plugin } from "obsidian";
-import { drawSelection } from "@codemirror/view";
+// import { drawSelection } from "@codemirror/view";
 import { extendedFormattingPlugin, customHighlightPlugin, alignerPlugin } from "./src/editorPlugins";
 import { customHighlightField, extendedFormattingField } from "./src/editorPlugins/stateFields";
 import { ExtendedFormattingPostProcessor, CustomHighlightPostProcessor, AlignerPostProcessor } from "./src/postProcessor";
@@ -20,7 +20,7 @@ export default class ExtendedMarkdownSyntax extends Plugin {
             extendedFormattingPlugin,
             customHighlightPlugin,
             alignerPlugin,
-            drawSelection()
+            // drawSelection()
         ]);
 
         // postprocessor
