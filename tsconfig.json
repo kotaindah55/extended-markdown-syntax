@@ -4,21 +4,23 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "module": "ESNext",
-    "target": "ES6",
+    "target": "ES2023",
     "allowJs": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "isolatedModules": true,
     "strictNullChecks": true,
+    "types": ["obsidian-typings"],
     "lib": [
       "DOM",
       "ES5",
       "ES6",
-      "ES7"
+      "ES7",
+      "ES2023",
+      "DOM.Iterable",
+      "DOM.AsyncIterable"
     ]
   },
-  "include": [
-    "**/*.ts"
-  ]
+  "include": ["src/**/*", "main.ts"]
 }
