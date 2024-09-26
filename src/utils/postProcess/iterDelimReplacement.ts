@@ -2,7 +2,7 @@ import { getDelimCounts } from ".";
 import { type DelimType } from "../../enums";
 import { type postProcessorDelimRegExps } from "../../regExps";
 
-export function iterDelimReplacement(contentEl: HTMLElement, rawText: string, delimQuery: ReturnType<typeof postProcessorDelimRegExps.get>, tagName: DelimType, excludedSelector: string, isTableCell?: boolean) {
+export function iterDelimReplacement(contentEl: HTMLElement, rawText: string, delimQuery: ReturnType<typeof postProcessorDelimRegExps.get>, tagName: DelimType, isTableCell?: boolean) {
 
     let ignoreEscaper = !!(isTableCell && tagName == "spoiler");
     let {openingDelim, closingDelim, raw, length: delimLength, origin: originDelim} = delimQuery!;

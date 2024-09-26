@@ -10,7 +10,6 @@ export class ExtendedFormattingPostProcessor {
     workspace: Workspace;
 
     private readonly targetedElements = 'p, li, h1, h2, h3, h4, h5, h6, .callout-title-inner';
-    private readonly excludedSelector = 'code, a.internal-link, .math';
 
     constructor(workspace: Workspace) {
         this.view = workspace.activeEditor as typeof this.view;
@@ -20,7 +19,7 @@ export class ExtendedFormattingPostProcessor {
     private format(contentEl: HTMLElement, rawText: string, isTableCell?: boolean) {
 
         postProcessorDelimRegExps.forEach((delimQuery, tagName) => {
-            iterDelimReplacement(contentEl, rawText, delimQuery, tagName, this.excludedSelector, isTableCell);
+            iterDelimReplacement(contentEl, rawText, delimQuery, tagName, isTableCell);
         });
     }
 
