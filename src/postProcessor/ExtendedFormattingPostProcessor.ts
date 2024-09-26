@@ -1,5 +1,5 @@
-import { type TableBlock } from "@codemirror/view";
-import { type Workspace, type MarkdownPostProcessor, MarkdownView, EventRef } from "obsidian";
+import { type TableWidget, type DocViewBlock, type BlockWidget } from "@codemirror/view";
+import { type MarkdownView, type Workspace, type MarkdownPostProcessor } from "obsidian";
 import { postProcessorDelimRegExps } from "../regExps";
 import { iterDelimReplacement, splitCells, getBlockquoteSections } from "../utils/postProcess";
 import { getTextAtLine } from "../utils";
@@ -10,7 +10,7 @@ export class ExtendedFormattingPostProcessor {
     workspace: Workspace;
 
     private readonly targetedElements = 'p, li, h1, h2, h3, h4, h5, h6, .callout-title-inner';
-    private readonly excludedSelector = 'code, a.internal-link, .math';
+    private readonly excludedSelector = 'code, a.internal-link';
 
     constructor(workspace: Workspace) {
         this.view = workspace.activeEditor as typeof this.view;
@@ -69,12 +69,12 @@ export class ExtendedFormattingPostProcessor {
             
             let cmEditor = this.view?.editor?.cm ??
                 this.workspace._["quick-preview"]
-                .find((evtRef): evtRef is EventRef<MarkdownView> => evtRef.ctx instanceof MarkdownView && evtRef.ctx?.path == ctx.sourcePath)
-                ?.ctx?.editor.cm!;
+                .find((evtRef) => evtRef.ctx?.hasOwnProperty("editMode") && evtRef.ctx?.path == ctx.sourcePath)
+                ?.ctx?.editMode.cm!;
 
             if (container.classList.contains("table-cell-wrapper")) {
 
-                let tableBlock = cmEditor.docView.children.find((block): block is TableBlock => block.widget?.containerEl == ctx.containerEl);
+                let tableBlock: DocViewBlock<TableWidget> | undefined = cmEditor.docView.children.find(el => el.widget?.containerEl == ctx.containerEl);
                 let tableCells = tableBlock?.widget?.cellChildMap.keys()!;
 
                 for (let cell of tableCells) {
@@ -86,7 +86,7 @@ export class ExtendedFormattingPostProcessor {
 
             } else if (ctx.containerEl.classList.contains("cm-callout")) {
 
-                let calloutBlock= cmEditor.docView.children.find(el => el.widget?.containerEl == ctx.containerEl);
+                let calloutBlock: DocViewBlock<BlockWidget> | undefined = cmEditor.docView.children.find(el => el.widget?.containerEl == ctx.containerEl);
                 let calloutText = calloutBlock?.widget?.text!;
 
                 getBlockquoteSections(calloutText, true).forEach((section, i) => {

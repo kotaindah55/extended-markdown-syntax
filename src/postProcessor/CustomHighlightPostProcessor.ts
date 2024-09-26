@@ -1,26 +1,19 @@
 import { type MarkdownPostProcessor } from "obsidian";
+import { type ExtendedElement } from "../types";
 
 export class CustomHighlightPostProcessor {
 
     constructor() {}
 
-    private format = (el: HTMLElement) => {
+    private format = (el: ExtendedElement) => {
         
-        let markElements = el.querySelectorAll<HTMLElement>("mark");
-        let colorMark = /^\{([\w\d\-_]+)\}/d;
+        let markElements = el.querySelectorAll<ExtendedElement>("mark");
+        let colorMark = /^\{([\w\d\-_]+)\}/;
 
         markElements.forEach((mark) => {
-
-            let firstChildNode = mark.firstChild;
-
-            if (!(firstChildNode instanceof Text && firstChildNode.textContent)) { return }
-
-            let colorMarkExecArr = colorMark.exec(firstChildNode.textContent);
-
+            let colorMarkExecArr = colorMark.exec(mark.innerText);
             if (colorMarkExecArr) {
-                
-                let [from, to] = colorMarkExecArr.indices![0];
-                firstChildNode.replaceData(from, to - from, "");
+                mark.innerHTML = mark.innerHTML.replace(colorMarkExecArr[0], "");
                 mark.classList.add(`cmx-highlight-${colorMarkExecArr[1]}`);
             }
         });

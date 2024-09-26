@@ -9,27 +9,31 @@ export class AlignerPostProcessor {
 
     private format = (el: ExtendedElement) => {
         
-        let alignMark = /^!((?:left)|(?:right)|(?:center)|(?:justify))!/d;
+        let alignMark = /^!((?:left)|(?:right)|(?:center)|(?:justify))!/;
         let alignMarkExecArr: RegExpExecArray | null;
-        let firstChildNode = el.firstChild;
 
-        if (!firstChildNode || el.parentElement?.tagName == "BLOCKQUOTE") { return }
+        if (el.parentElement?.tagName == "BLOCKQUOTE") { return }
 
-        if (el instanceof HTMLHeadingElement && (firstChildNode = el.childNodes[1]) instanceof Text) {
-            alignMarkExecArr = alignMark.exec(firstChildNode.textContent ?? "");
+        if (el.parentElement?.hasClass("callout-content")) {
+            alignMark = /^ *!((?:left)|(?:right)|(?:center)|(?:justify))!/;
+            alignMarkExecArr = alignMark.exec(el.innerHTML);
+
+        } else if (el.toString() == "[object HTMLHeadingElement]" && el.childNodes[1].nodeType == 3) {
+            alignMarkExecArr = alignMark.exec(el.childNodes[1].textContent!);
 
         } else {
-            
-            if (!(firstChildNode instanceof Text)) { return }
-
-            el.parentElement?.hasClass("callout-content") && (alignMark = /^ *!((?:left)|(?:right)|(?:center)|(?:justify))!/d);
-            alignMarkExecArr = alignMark.exec(firstChildNode.textContent ?? "");
+            alignMarkExecArr = alignMark.exec(el.innerHTML);
         }
 
         if (alignMarkExecArr) {
-            let [from, to] = alignMarkExecArr.indices![0];
-            firstChildNode.replaceData(from, to - from, "");
-            el.addClass(`cmx-align-${alignMarkExecArr[1]}`);
+            
+            el.innerHTML = el.innerHTML.replace(alignMarkExecArr[0], "");
+
+            if (el.hasClass("callout-title-inner")) {
+                el.parentElement!.style.justifyContent = alignMarkExecArr[1] != "justify" ? alignMarkExecArr[1] : "space-between";
+            } else {
+                el.style.textAlign = alignMarkExecArr[1];
+            }   
         }
     }
 

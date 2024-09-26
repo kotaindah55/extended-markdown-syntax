@@ -15,7 +15,7 @@ declare module "obsidian" {
     }
 
     interface EventListener {
-        [name: string]: EventRef[];
+        ["quick-preview"]: EventRef<MarkdownView>[];
     }
 
     interface EventRef<T = unknown> {
@@ -40,24 +40,20 @@ declare module "@codemirror/view" {
     }
 
     interface DocView {
-        children: DocViewBlock[];
+        children: DocViewBlock<any>[];
     }
 
-    interface DocViewBlock<T = BlockWidget> {
+    interface DocViewBlock<T extends BlockWidget> {
         widget?: T;
     }
 
-    interface TableBlock extends DocViewBlock<TableWidget> {
-        widget: TableWidget;
-    }
-
-    interface BlockWidget extends WidgetType {
+    class BlockWidget extends WidgetType {
         toDOM(view: EditorView): HTMLElement;
         containerEl: HTMLElement;
         text: string;
     }
 
-    interface TableWidget extends BlockWidget {
+    class TableWidget extends BlockWidget {
         cellChildMap: Map<TableCell, unknown>;
     }
 
