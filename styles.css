@@ -1,16 +1,14 @@
-.cm-line {
-    &.cmx-align-left {
-        text-align: left;
-    }
-    &.cmx-align-right {
-        text-align: right;
-    }
-    &.cmx-align-center {
-        text-align: center;
-    }
-    &.cmx-align-justify {
-        text-align: justify;
-    }
+.cmx-align-left {
+    text-align: left;
+}
+.cmx-align-right {
+    text-align: right;
+}
+.cmx-align-center {
+    text-align: center;
+}
+.cmx-align-justify {
+    text-align: justify;
 }
 
 .cmx-underline {
