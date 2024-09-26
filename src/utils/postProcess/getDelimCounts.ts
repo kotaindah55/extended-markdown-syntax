@@ -1,9 +1,12 @@
-import { getRestrictedRanges } from "../postProcess";
+import { getRestrictedRanges } from ".";
 
-export function getEscapedDelims(text: string, openingDelim: RegExp, closingDelim: RegExp) {
+export function getDelimCounts(text: string, openingDelim: RegExp, closingDelim: RegExp, originDelim: string, ignoreEscaper: boolean = false) {
 
     let restrictedRanges = getRestrictedRanges(text);
-    let indexes: number[] = [];
+    let counts: number[] = [];
+
+    let delimChar = originDelim.charAt(0);
+    ignoreEscaper && (text = text.replaceAll(`\\${delimChar}`, delimChar));
 
     openingDelim.lastIndex = 0;
     closingDelim.lastIndex = 0;
@@ -19,13 +22,12 @@ export function getEscapedDelims(text: string, openingDelim: RegExp, closingDeli
         closingDelim.lastIndex = all[1];
 
         if (escaper || slippedBackslash || next) {
-            indexes.push(i);
             openingDelim.lastIndex = target[0] + 1;
             i++;
             continue;
         }
 
-        i++;
+        counts.push(i++);
 
         for(
             let closingMatch = closingDelim.exec(text);
@@ -40,17 +42,16 @@ export function getEscapedDelims(text: string, openingDelim: RegExp, closingDeli
             }
 
             if (escaper || slippedBackslash) {
-                indexes.push(i);
                 closingDelim.lastIndex = target[0] + 1;
                 i++;
                 continue;
             }
 
-            i++;
+            counts.push(i++);
             openingDelim.lastIndex = all[1];
             break;
         }
     }
 
-    return indexes;
+    return counts;
 }
