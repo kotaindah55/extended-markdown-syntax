@@ -1,10 +1,10 @@
 import { Decoration, ViewPlugin, type PluginValue, type DecorationSet, type EditorView, type ViewUpdate, drawSelection } from "@codemirror/view";
 import { type Range } from "@codemirror/state";
 import { editorLivePreviewField } from "obsidian";
-import { checkSelectionOverlap } from "../utils/codemirror";
-import { ColorButton, HiddenWidget } from "./widgets";
-import { highlightDecorator } from "./decorators";
-import { customHighlightField } from "./stateFields";
+import { checkSelectionOverlap } from "../../utils/codemirror";
+import { ColorButton, HiddenWidget } from "../widgets";
+import { highlightDecorator } from "../decorators";
+import { customHighlightField } from "../stateFields";
 
 class CustomHighlight implements PluginValue {
 

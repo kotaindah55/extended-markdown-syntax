@@ -1,11 +1,11 @@
 import { Decoration, type EditorView, type PluginValue, type DecorationSet, type ViewUpdate, ViewPlugin } from "@codemirror/view";
 import { type Range } from "@codemirror/state";
 import { editorLivePreviewField } from "obsidian";
-import { extendedFormattingField } from "./stateFields";
-import { checkSelectionOverlap } from "../utils/codemirror";
-import { HiddenWidget } from "./widgets";
-import { type DelimPos } from "../types";
-import { formattingDecorators, hiddenSpoiler } from "./decorators";
+import { extendedFormattingField } from "../stateFields";
+import { checkSelectionOverlap } from "../../utils/codemirror";
+import { HiddenWidget } from "../widgets";
+import { type DelimPos } from "../../types";
+import { formattingDecorators, hiddenSpoiler } from "../decorators";
 
 class ExtendedFormatting implements PluginValue {
 

@@ -1,5 +1,4 @@
 import { type MarkdownPostProcessor } from "obsidian";
-import { type ExtendedElement } from "../types";
 
 export class AlignerPostProcessor {
 
@@ -7,7 +6,7 @@ export class AlignerPostProcessor {
 
     constructor() {}
 
-    private format = (el: ExtendedElement) => {
+    private format = (el: HTMLElement) => {
         
         let alignMark = /^!((?:left)|(?:right)|(?:center)|(?:justify))!/d;
         let alignMarkExecArr: RegExpExecArray | null;

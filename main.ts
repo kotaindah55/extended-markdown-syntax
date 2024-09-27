@@ -1,6 +1,6 @@
 import { Plugin } from "obsidian";
 // import { drawSelection } from "@codemirror/view";
-import { extendedFormattingPlugin, customHighlightPlugin, alignerPlugin } from "./src/editorPlugins";
+import { extendedFormattingPlugin, customHighlightPlugin, alignerPlugin } from "./src/editorPlugins/decorationBuilders";
 import { customHighlightField, extendedFormattingField } from "./src/editorPlugins/stateFields";
 import { ExtendedFormattingPostProcessor, CustomHighlightPostProcessor, AlignerPostProcessor } from "./src/postProcessor";
 

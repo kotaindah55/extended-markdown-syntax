@@ -2,10 +2,10 @@ import { Decoration, ViewPlugin, type PluginValue, type DecorationSet, type Edit
 import { type Range } from "@codemirror/state";
 import { RegExpCursor } from "@codemirror/search";
 import { editorLivePreviewField } from "obsidian";
-import { checkSelectionOverlap } from "../utils/codemirror";
-import { isCodeblock } from "../utils/codemirror";
-import { HiddenWidget } from "./widgets";
-import { alignerDecorators } from "./decorators";
+import { checkSelectionOverlap } from "../../utils/codemirror";
+import { isCodeblock } from "../../utils/codemirror";
+import { HiddenWidget } from "../widgets";
+import { alignerDecorators } from "../decorators";
 
 class Aligner implements PluginValue {
 
