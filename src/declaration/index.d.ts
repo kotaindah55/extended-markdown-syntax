@@ -34,31 +34,31 @@ declare module "obsidian" {
 }
 
 declare module "@codemirror/view" {
-
-    interface EditorView {
-        docView: DocView;
-    }
-
-    interface DocView {
-        children: DocViewBlock[];
-    }
-
-    interface DocViewBlock<T = BlockWidget> {
-        widget?: T;
-    }
-
-    interface TableBlock extends DocViewBlock<TableWidget> {
-        widget: TableWidget;
-    }
-
+    
     interface BlockWidget extends WidgetType {
         toDOM(view: EditorView): HTMLElement;
         containerEl: HTMLElement;
         text: string;
     }
 
+    interface DocViewBlock<T = BlockWidget> {
+        widget?: T;
+    }
+
+    interface DocView {
+        children: DocViewBlock[];
+    }
+    
+    interface EditorView {
+        docView: DocView;
+    }
+
     interface TableWidget extends BlockWidget {
         cellChildMap: Map<TableCell, unknown>;
     }
 
+    interface TableBlock extends DocViewBlock<TableWidget> {
+        widget: TableWidget;
+    }
+    
 }
