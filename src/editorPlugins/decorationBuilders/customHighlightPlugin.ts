@@ -39,16 +39,12 @@ class CustomHighlight implements PluginValue {
             let [outerFrom, innerFrom, innerTo, outerTo, color] = [...hl];
             let markerLength = color ? color.length + 2 : 0;
 
-            newDecorations.push(
-                Decoration.mark({class: `${highlightDecorator.class}-${color ?? "default"}`}).range(outerFrom, outerTo),
-                Decoration.mark({class: `${highlightDecorator.class}-first-letter`}).range(innerFrom + markerLength, innerFrom + markerLength + 1),
-                Decoration.mark({class: `${highlightDecorator.class}-last-letter`}).range(innerTo - 1, innerTo)
-            );
+            newDecorations.push(Decoration.mark({class: `${highlightDecorator.class}-${color ?? "default"}`}).range(outerFrom, outerTo));
 
             if (checkSelectionOverlap(view.state.selection, outerFrom, outerTo) || !this.isLivePreview) {
                 newDecorations.push(Decoration.widget({widget: new ColorButton(
                     color, innerFrom, innerFrom + markerLength, outerFrom, outerTo, innerFrom, innerTo
-                ), side: 1}).range(innerFrom));
+                ), side: -1}).range(innerFrom));
             }
 
             if (color && !(checkSelectionOverlap(view.state.selection, innerFrom, innerFrom + markerLength) || !this.isLivePreview)) {
@@ -69,6 +65,4 @@ class CustomHighlight implements PluginValue {
     }
 }
 
-export const customHighlightPlugin = ViewPlugin.fromClass(CustomHighlight, {
-    decorations: (value) => value.decorations
-});
+export const customHighlightPlugin = ViewPlugin.fromClass(CustomHighlight);

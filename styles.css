@@ -32,23 +32,12 @@
     transition-duration: 0.1s;
 } */
 
-.cm-s-obsidian span.cm-highlight:has(.cmx-highlight) {
-    background-color: transparent;
-    .cmx-highlight {
-        &:has(.cmx-highlight-first-letter) {
-            padding-inline-start: 2px;
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
-        }
-        &:has(.cmx-highlight-last-letter) {
-            padding-inline-end: 2px;
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
-        }
-    }
-    &.cm-formatting-highlight .cmx-highlight {
-        padding-inline: 2px;
-        border-radius: 2px;
+.cmx-highlight:has(.cm-highlight) {
+    padding-inline: 2px;
+    border-radius: 2px;
+    background-color: var(--text-highlight-bg);
+    .cm-s-obsidian & .cm-highlight {
+        background-color: transparent;
     }
 }
 
@@ -57,39 +46,59 @@ mark {
     border-radius: 2px;
 }
 
-.cmx-highlight:has(.cmx-color-btn) {
-    background-color: transparent;
+.cmx-highlight {
+    background-color: var(--text-highlight-bg);
 }
 
-mark.cmx-highlight-red, .cmx-highlight-red, .cmx-highlight-red .cmx-color-btn, .es-item-red .menu-item-title {
-    background-color: rgba(var(--color-red-rgb), 0.5);
+.cmx-highlight-red, .es-item-red .menu-item-title {
+    &, &:is(mark) {
+        background-color: rgba(var(--color-red-rgb), 0.5);
+    }
 }
-mark.cmx-highlight-orange, .cmx-highlight-orange, .cmx-highlight-orange .cmx-color-btn, .es-item-orange .menu-item-title {
-    background-color: rgba(var(--color-orange-rgb), 0.5);
+.cmx-highlight-orange, .es-item-orange .menu-item-title {
+    &, &:is(mark) {
+        background-color: rgba(var(--color-orange-rgb), 0.5);
+    }
 }
-mark.cmx-highlight-yellow, .cmx-highlight-yellow, .cmx-highlight-yellow .cmx-color-btn, .es-item-yellow .menu-item-title {
-    background-color: rgba(var(--color-yellow-rgb), 0.5);
+.cmx-highlight-yellow, .es-item-yellow .menu-item-title {
+    &, &:is(mark) {
+        background-color: rgba(var(--color-yellow-rgb), 0.5);
+    }
 }
-mark.cmx-highlight-green, .cmx-highlight-green, .cmx-highlight-green .cmx-color-btn, .es-item-green .menu-item-title {
-    background-color: rgba(var(--color-green-rgb), 0.5);
+.cmx-highlight-green, .es-item-green .menu-item-title {
+    &, &:is(mark) {
+        background-color: rgba(var(--color-green-rgb), 0.5);
+    }
 }
-mark.cmx-highlight-cyan, .cmx-highlight-cyan, .cmx-highlight-cyan .cmx-color-btn, .es-item-cyan .menu-item-title {
-    background-color: rgba(var(--color-cyan-rgb), 0.5);
+.cmx-highlight-cyan, .es-item-cyan .menu-item-title {
+    &, &:is(mark) {
+        background-color: rgba(var(--color-cyan-rgb), 0.5);
+    }
 }
-mark.cmx-highlight-blue, .cmx-highlight-blue, .cmx-highlight-blue .cmx-color-btn, .es-item-blue .menu-item-title {
-    background-color: rgba(var(--color-blue-rgb), 0.5);
+.cmx-highlight-blue, .es-item-blue .menu-item-title {
+    &, &:is(mark) {
+        background-color: rgba(var(--color-blue-rgb), 0.5);
+    }
 }
-mark.cmx-highlight-purple, .cmx-highlight-purple, .cmx-highlight-purple .cmx-color-btn, .es-item-purple .menu-item-title {
-    background-color: rgba(var(--color-purple-rgb), 0.5);
+.cmx-highlight-purple, .es-item-purple .menu-item-title {
+    &, &:is(mark) {
+        background-color: rgba(var(--color-purple-rgb), 0.5);
+    }
 }
-mark.cmx-highlight-pink, .cmx-highlight-pink, .cmx-highlight-pink .cmx-color-btn, .es-item-pink .menu-item-title {
-    background-color: rgba(var(--color-pink-rgb), 0.5);
+.cmx-highlight-pink, .es-item-pink .menu-item-title {
+    &, &:is(mark) {
+        background-color: rgba(var(--color-pink-rgb), 0.5);
+    }
 }
-mark.cmx-highlight-accent, .cmx-highlight-accent, .cmx-highlight-accent .cmx-color-btn, .es-item-accent .menu-item-title {
-    background-color: hsla(var(--color-accent-hsl), 0.5)
+.cmx-highlight-accent, .es-item-accent .menu-item-title {
+    &, &:is(mark) {
+        background-color: hsla(var(--color-accent-hsl), 0.5)
+    }
 }
-mark.cmx-highlight-default, .cmx-highlight-default, .cmx-highlight-default .cmx-color-btn, .es-item-default .menu-item-title {
-    background-color: var(--text-highlight-bg);
+.cmx-highlight-default, .es-item-default .menu-item-title {
+    &, &:is(mark) {
+        background-color: var(--text-highlight-bg);
+    }
 }
 
 .cmx-color-btn {
@@ -101,6 +110,7 @@ mark.cmx-highlight-default, .cmx-highlight-default, .cmx-highlight-default .cmx-
     border-color: #ffffff44;
     vertical-align: middle;
     border-radius: 2px;
+    background-color: inherit;
 }
 
 .menu.es-highlight-colors-modal {
