@@ -6,17 +6,15 @@ import { getTextAtLine } from "../utils";
 
 export class ExtendedFormattingPostProcessor {
 
-    view: MarkdownView | null;
     workspace: Workspace;
 
     private readonly targetedElements = 'p, li, h1, h2, h3, h4, h5, h6, .callout-title-inner';
 
     constructor(workspace: Workspace) {
-        this.view = workspace.activeEditor as typeof this.view;
         this.workspace = workspace;
     }
 
-    private format(contentEl: HTMLElement, rawText: string, isTableCell?: boolean) {
+    private format(contentEl: HTMLElement, rawText: string, isTableCell: boolean = false) {
 
         postProcessorDelimRegExps.forEach((delimQuery, tagName) => {
             iterDelimReplacement(contentEl, rawText, delimQuery, tagName, isTableCell);
@@ -32,7 +30,7 @@ export class ExtendedFormattingPostProcessor {
             let rawTextData = getTextAtLine(sectionInfo.text, sectionInfo.lineStart, sectionInfo.lineEnd);
             let firstChild = container.firstElementChild;
 
-            if (firstChild?.tagName == "TABLE") {
+            if (firstChild instanceof HTMLTableElement) {
 
                 splitCells(rawTextData).forEach((rawText, i) => {
                     this.format(container.querySelectorAll<HTMLElement>("td, th")[i], rawText, true);
@@ -44,7 +42,7 @@ export class ExtendedFormattingPostProcessor {
                     this.format(container.querySelectorAll<HTMLElement>(this.targetedElements)[i], section.text);
                 });
 
-            } else if (firstChild?.classList.contains("callout")) {
+            } else if (firstChild?.hasClass("callout")) {
 
                 getBlockquoteSections(rawTextData, true).forEach((section, i) => {
                     this.format(container.querySelectorAll<HTMLElement>(this.targetedElements)[i], section.text);
@@ -66,7 +64,7 @@ export class ExtendedFormattingPostProcessor {
 
         } else {
             
-            let cmEditor = this.view?.editor?.cm ??
+            let cmEditor = this.workspace.activeEditor?.editor?.cm ??
                 this.workspace._["quick-preview"]
                 .find((evtRef): evtRef is EventRef<MarkdownView> => evtRef.ctx instanceof MarkdownView && evtRef.ctx?.path == ctx.sourcePath)
                 ?.ctx?.editor.cm!;
