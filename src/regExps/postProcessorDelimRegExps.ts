@@ -3,7 +3,7 @@ import { DelimType } from "../enums";
 export const postProcessorDelimRegExps = new Map([
     [DelimType.U, {
         openingDelim: /\+(?=\+(?!\s))/gd,
-        closingDelim: /(?<!\s)\+(?=\+)/gd,
+        closingDelim: /\+(?=\+)/gd,
         raw: {
             openingDelim: /((?<!\\)(?:\\{2})*\\)?(\+(\\)?\+)(?!$|\s)(?=(\+)?)/gd,
             closingDelim: /(?:((?<!\\)(?:\\{2})*(?<!\s)\\)|(?<![\\\s])|((?<!\\)(?:\\{2})+))(\+(\\)?\+)/gd
@@ -13,7 +13,7 @@ export const postProcessorDelimRegExps = new Map([
     }],
     [DelimType.Sup, {
         openingDelim: /\^(?!\s)/gd,
-        closingDelim: /(?<!\s)\^/gd,
+        closingDelim: /\^/gd,
         raw: {
             openingDelim: /((?<!\\)(?:\\{2})*\\)?(\^()?)(?!$|\s)(?=(\^)?)/gd,
             closingDelim: /(?:((?<!\\)(?:\\{2})*(?<!\s)\\)|(?<![\\\s])|((?<!\\)(?:\\{2})+))(\^()?)/gd
@@ -23,7 +23,7 @@ export const postProcessorDelimRegExps = new Map([
     }],
     [DelimType.Sub, {
         openingDelim: /~(?!\s)/gd,
-        closingDelim: /(?<!\s)~/gd,
+        closingDelim: /~/gd,
         raw: {
             openingDelim: /((?<!\\)(?:\\{2})*\\)?(~()?)(?!$|\s)(?=(~)?)/gd,
             closingDelim: /(?:((?<!\\)(?:\\{2})*(?<!\s)\\)|(?<![\\\s])|((?<!\\)(?:\\{2})+))(~()?)/gd
@@ -33,7 +33,7 @@ export const postProcessorDelimRegExps = new Map([
     }],
     [DelimType.Spoiler, {
         openingDelim: /\|(?=\|(?!\s))/gd,
-        closingDelim: /(?<!\s)\|(?=\|)/gd,
+        closingDelim: /\|(?=\|)/gd,
         raw: {
             openingDelim: /((?<!\\)(?:\\{2})*\\)?(\|(\\)?\|)(?!$|\s)(?=(\|)?)/gd,
             closingDelim: /(?:((?<!\\)(?:\\{2})*(?<!\s)\\)|(?<![\\\s])|((?<!\\)(?:\\{2})+))(\|(\\)?\|)/gd

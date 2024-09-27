@@ -36,13 +36,13 @@ export function iterDelimReplacement(contentEl: HTMLElement, rawText: string, de
     treeWalker.nextNode();
 
     for (
-        let i = -1,
+        let i = 0,
             node = treeWalker.currentNode,
             matched: RegExpExecArray | null,
             closingTurn = false,
             endOfTree = false,
             range: Range;
-        i <= lastDelimCount || endOfTree;
+        i <= lastDelimCount + 1 || endOfTree;
     ) {
 
         if (node instanceof Text && !closingTurn) {
@@ -53,7 +53,7 @@ export function iterDelimReplacement(contentEl: HTMLElement, rawText: string, de
 
                 if (matched.index + delimLength == node.length && node.nextSibling instanceof HTMLBRElement) { continue }
 
-                if (delimIndexes[0] === ++i) {
+                if (delimIndexes[0] === i++) {
                     closingTurn = true;
                     node.deleteData((closingDelim.lastIndex = matched.index), delimLength);
                     (range = document.createRange()).setStart(node, matched.index);
@@ -82,7 +82,8 @@ export function iterDelimReplacement(contentEl: HTMLElement, rawText: string, de
 
                     if (matched.index == 0 && node.previousSibling instanceof HTMLBRElement) { continue }
     
-                    if (delimIndexes[0] == ++i) {
+                    if (delimIndexes[0] == i++) {
+                        /\s/.test(node.textContent!.charAt(matched.index - 1)) && matched.index++;
                         node.deleteData((openingDelim.lastIndex = matched.index), delimLength);
                         range!.setEnd(node, matched.index);
                         delimIndexes.shift();
